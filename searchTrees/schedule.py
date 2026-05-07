@@ -33,7 +33,11 @@ class Schedule:
                     catalog=row["Catalog"].strip(),
                     section=row["Section"].strip(),
                     component=row["Component"].strip(),
-                    instructor=row["Instructor"].strip()
+                    instructor=row["Instructor"].strip(),
+                    room=row["Room"].strip(),
+                    days=row["Days"].strip(),
+                    start_time=row["Mtg Start"].strip(),
+                    end_time=row["Mtg End"].strip()
                 )
 
                 # Use the course key to insert the item into the tree.

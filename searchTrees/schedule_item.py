@@ -11,6 +11,10 @@ class ScheduleItem:
     section: str
     component: str
     instructor: str
+    room: str
+    days: str
+    start_time: str
+    end_time: str
 
     def get_key(self):
         # Creates a unique key for the course.
@@ -21,5 +25,7 @@ class ScheduleItem:
         return (
             f"{self.subject} {self.catalog} {self.section} | "
             f"{self.component} | "
-            f"{self.instructor}"
+            f"Instructor: {self.instructor} | "
+            f"Room: {self.room} | "
+            f"{self.days} {self.start_time}-{self.end_time}"
         )

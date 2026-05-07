@@ -14,7 +14,21 @@ def display_menu():
     print("4. Search by subject and catalog")
     print("5. Search by instructor")
     print("6. Display tree heights")
-    print("7. Exit")
+    print("7. Switch tree type")
+    print("8. Exit")
+
+
+def print_results(results):
+    # Prints the number of results and each course found.
+
+    print()
+    print("Courses found:", len(results))
+
+    if len(results) == 0:
+        print("No matching courses were found.")
+    else:
+        for item in results:
+            print(item)
 
 
 def main():
@@ -29,13 +43,21 @@ def main():
     bst_schedule.load_from_csv("courses_2023.csv")
     avl_schedule.load_from_csv("courses_2023.csv")
 
+    # Start using AVL by default.
+    current_schedule = avl_schedule
+    current_tree_name = "AVL"
+
     print("BST records loaded:", bst_schedule.get_count())
     print("AVL records loaded:", avl_schedule.get_count())
 
     choice = ""
 
-    while choice != "7":
+    while choice != "8":
+        print()
+        print("Current Tree:", current_tree_name)
+
         display_menu()
+
         choice = input("Enter your choice: ")
 
         print()
@@ -43,14 +65,14 @@ def main():
         if choice == "1":
             print("First 10 Courses")
             print("----------------")
-            avl_schedule.print_first_items(10)
+            current_schedule.print_first_items(10)
 
         elif choice == "2":
             subject = input("Enter subject: ")
             catalog = input("Enter catalog number: ")
             section = input("Enter section: ")
 
-            result = avl_schedule.search_course(subject, catalog, section)
+            result = current_schedule.search_course(subject, catalog, section)
 
             if result is not None:
                 print()
@@ -62,43 +84,41 @@ def main():
 
         elif choice == "3":
             subject = input("Enter subject: ")
-
-            results = avl_schedule.search_by_subject(subject)
-
-            print()
-            print("Courses found:", len(results))
-
-            for item in results:
-                print(item)
+            results = current_schedule.search_by_subject(subject)
+            print_results(results)
 
         elif choice == "4":
             subject = input("Enter subject: ")
             catalog = input("Enter catalog number: ")
 
-            results = avl_schedule.search_by_subject_catalog(subject, catalog)
+            results = current_schedule.search_by_subject_catalog(subject, catalog)
 
-            print()
-            print("Courses found:", len(results))
-
-            for item in results:
-                print(item)
+            print_results(results)
 
         elif choice == "5":
             instructor = input("Enter instructor name: ")
 
-            results = avl_schedule.search_by_instructor(instructor)
+            results = current_schedule.search_by_instructor(instructor)
 
-            print()
-            print("Courses found:", len(results))
-
-            for item in results:
-                print(item)
+            print_results(results)
 
         elif choice == "6":
             print("BST Height:", bst_schedule.get_height())
             print("AVL Height:", avl_schedule.get_height())
 
         elif choice == "7":
+            # Switch between BST and AVL trees.
+
+            if current_schedule == avl_schedule:
+                current_schedule = bst_schedule
+                current_tree_name = "BST"
+            else:
+                current_schedule = avl_schedule
+                current_tree_name = "AVL"
+
+            print("Switched to", current_tree_name)
+
+        elif choice == "8":
             print("Goodbye.")
 
         else:
