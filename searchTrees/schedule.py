@@ -56,3 +56,14 @@ class Schedule:
         key = f"{subject}-{catalog}-{section}"
 
         return self.items.search(key)
+
+    def search_by_subject(self, subject):
+        # Searches through the tree and returns all courses with the matching subject.
+
+        results = []
+
+        for key, item in self.items.inorder_items():
+            if item.subject.upper() == subject.upper():
+                results.append(item)
+
+        return results

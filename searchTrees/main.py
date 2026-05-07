@@ -36,6 +36,18 @@ def main():
     else:
         print("Course not found")
 
+    print()
+    print("Subject Search Test")
+    print("-------------------")
+
+    # Search for every course with a matching subject.
+    subject_results = schedule.search_by_subject("AIR")
+
+    print("Courses found:", len(subject_results))
+
+    for item in subject_results[:10]:
+        print(item)
+
 
 if __name__ == "__main__":
     main()
