@@ -95,3 +95,8 @@ class Schedule:
                 results.append(item)
 
         return results
+
+    def get_height(self):
+        # Returns the height of the tree.
+
+        return self.items.height()

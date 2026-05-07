@@ -16,6 +16,9 @@ def main():
     print("BST records loaded:", bst_schedule.get_count())
 
     print()
+    print("BST Height:", bst_schedule.get_height())
+
+    print()
     print("First 5 BST Courses")
     print("-------------------")
 
@@ -31,6 +34,9 @@ def main():
     avl_schedule.load_from_csv("courses_2023.csv")
 
     print("AVL records loaded:", avl_schedule.get_count())
+
+    print()
+    print("AVL Height:", avl_schedule.get_height())
 
     print()
     print("First 5 AVL Courses")
