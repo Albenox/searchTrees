@@ -16,6 +16,12 @@ def main():
 
     # Display the number of records found.
     print("Total records loaded:", schedule.get_count())
+    print()
+
+    # Display some of the loaded courses.
+    print("First 10 Courses")
+    print("----------------")
+    schedule.print_first_items(10)
 
 
 if __name__ == "__main__":
