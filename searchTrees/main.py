@@ -5,67 +5,44 @@ from schedule import Schedule
 
 
 def main():
-    print("File Test")
-    print()
+    print("BST Test")
+    print("--------")
 
-    # Create the Schedule object.
-    schedule = Schedule()
+    # Create a BST schedule.
+    bst_schedule = Schedule("bst")
 
-    # Load the CSV file.
-    schedule.load_from_csv("courses_2023.csv")
+    bst_schedule.load_from_csv("courses_2023.csv")
 
-    # Display the number of records found.
-    print("Total records loaded:", schedule.get_count())
-    print()
-
-    # Display some of the loaded courses.
-    print("First 10 Courses")
-    print("----------------")
-    schedule.print_first_items(10)
+    print("BST records loaded:", bst_schedule.get_count())
 
     print()
-    print("Course Search Test")
-    print("------------------")
-
-    # Search for a specific course section.
-    result = schedule.search_course("AIR", "154", "01HL")
-
-    if result is not None:
-        print("Course found:")
-        print(result)
-    else:
-        print("Course not found")
-
-    print()
-    print("Subject Search Test")
+    print("First 5 BST Courses")
     print("-------------------")
 
-    # Search for every course with a matching subject.
-    subject_results = schedule.search_by_subject("AIR")
-
-    print("Courses found:", len(subject_results))
-
-    for item in subject_results[:10]:
-        print(item)
+    bst_schedule.print_first_items(5)
 
     print()
-    print("Subject and Catalog Search Test")
-    print("-------------------------------")
+    print("AVL Test")
+    print("--------")
 
-    # Search for every course with a matching subject and catalog number.
-    catalog_results = schedule.search_by_subject_catalog("AIR", "154")
+    # Create an AVL schedule.
+    avl_schedule = Schedule("avl")
 
-    print("Courses found:", len(catalog_results))
+    avl_schedule.load_from_csv("courses_2023.csv")
 
-    for item in catalog_results:
-        print(item)
+    print("AVL records loaded:", avl_schedule.get_count())
+
+    print()
+    print("First 5 AVL Courses")
+    print("-------------------")
+
+    avl_schedule.print_first_items(5)
 
     print()
     print("Instructor Search Test")
     print("----------------------")
 
-    # Search for every course with a matching instructor name.
-    instructor_results = schedule.search_by_instructor("Scott")
+    instructor_results = avl_schedule.search_by_instructor("Scott")
 
     print("Courses found:", len(instructor_results))
 

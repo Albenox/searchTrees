@@ -4,12 +4,18 @@
 import csv
 from schedule_item import ScheduleItem
 from search_trees import BSTMap
+from search_trees import AVLTreeMap
 
 
 class Schedule:
-    def __init__(self):
-        # Stores all ScheduleItem objects inside a binary search tree.
-        self.items = BSTMap()
+    def __init__(self, tree_type="bst"):
+        # Creates either a BST or AVL tree.
+
+        if tree_type.lower() == "avl":
+            self.items = AVLTreeMap()
+        else:
+            self.items = BSTMap()
+
         self.record_count = 0
 
     def load_from_csv(self, filename):
@@ -51,7 +57,7 @@ class Schedule:
             count += 1
 
     def search_course(self, subject, catalog, section):
-        # Creates a key and searches the BST.
+        # Creates a key and searches the tree.
 
         key = f"{subject}-{catalog}-{section}"
 
