@@ -67,3 +67,25 @@ class Schedule:
                 results.append(item)
 
         return results
+
+    def search_by_subject_catalog(self, subject, catalog):
+        # Searches through the tree and returns all courses with the matching subject and catalog number.
+
+        results = []
+
+        for key, item in self.items.inorder_items():
+            if item.subject.upper() == subject.upper() and item.catalog == catalog:
+                results.append(item)
+
+        return results
+
+    def search_by_instructor(self, instructor):
+        # Searches through the tree and returns all courses with the matching instructor.
+
+        results = []
+
+        for key, item in self.items.inorder_items():
+            if instructor.upper() in item.instructor.upper():
+                results.append(item)
+
+        return results

@@ -24,10 +24,10 @@ def main():
     schedule.print_first_items(10)
 
     print()
-    print("Search Test")
-    print("-----------")
+    print("Course Search Test")
+    print("------------------")
 
-    # Search for a specific course.
+    # Search for a specific course section.
     result = schedule.search_course("AIR", "154", "01HL")
 
     if result is not None:
@@ -46,6 +46,30 @@ def main():
     print("Courses found:", len(subject_results))
 
     for item in subject_results[:10]:
+        print(item)
+
+    print()
+    print("Subject and Catalog Search Test")
+    print("-------------------------------")
+
+    # Search for every course with a matching subject and catalog number.
+    catalog_results = schedule.search_by_subject_catalog("AIR", "154")
+
+    print("Courses found:", len(catalog_results))
+
+    for item in catalog_results:
+        print(item)
+
+    print()
+    print("Instructor Search Test")
+    print("----------------------")
+
+    # Search for every course with a matching instructor name.
+    instructor_results = schedule.search_by_instructor("Scott")
+
+    print("Courses found:", len(instructor_results))
+
+    for item in instructor_results:
         print(item)
 
 
