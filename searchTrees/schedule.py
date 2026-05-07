@@ -3,12 +3,14 @@
 
 import csv
 from schedule_item import ScheduleItem
+from search_trees import BSTMap
 
 
 class Schedule:
     def __init__(self):
-        # Stores all ScheduleItem objects.
-        self.items = []
+        # Stores all ScheduleItem objects inside a binary search tree.
+        self.items = BSTMap()
+        self.record_count = 0
 
     def load_from_csv(self, filename):
         # Opens the CSV file and loads course data.
@@ -28,15 +30,29 @@ class Schedule:
                     instructor=row["Instructor"].strip()
                 )
 
-                # Store the object in the list.
-                self.items.append(item)
+                # Use the course key to insert the item into the tree.
+                self.items.insert(item.get_key(), item)
+                self.record_count += 1
 
     def get_count(self):
         # Returns the total number of records loaded.
-        return len(self.items)
+        return self.record_count
 
     def print_first_items(self, amount=10):
-        # Prints a small number of schedule items.
+        # Prints a small number of schedule items in sorted order.
 
-        for item in self.items[:amount]:
+        count = 0
+
+        for key, item in self.items.inorder_items():
+            if count >= amount:
+                break
+
             print(item)
+            count += 1
+
+    def search_course(self, subject, catalog, section):
+        # Creates a key and searches the BST.
+
+        key = f"{subject}-{catalog}-{section}"
+
+        return self.items.search(key)

@@ -23,6 +23,19 @@ def main():
     print("----------------")
     schedule.print_first_items(10)
 
+    print()
+    print("Search Test")
+    print("-----------")
+
+    # Search for a specific course.
+    result = schedule.search_course("AIR", "154", "01HL")
+
+    if result is not None:
+        print("Course found:")
+        print(result)
+    else:
+        print("Course not found")
+
 
 if __name__ == "__main__":
     main()
